@@ -4,7 +4,7 @@
 
 Driver Program - Runs SparkContext and schedules tasks
 
-Cluster Manager - Manages resources (YARN/Mesos/kubernetes/Standalone)
+Cluster Manager - Manages resources (YARN/Mesos/Kubernetes/Standalone)
 
 Worker Nodes - Run executors that execute tasks
 
@@ -18,7 +18,7 @@ flowchart TD
     end
 
     subgraph ClusterManager
-        D[YARN/Mesos/kubernetes/Standalone]
+        D[YARN/Mesos/Kubernetes/Standalone]
     end
 
     subgraph WorkerNodes
