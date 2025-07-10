@@ -1,27 +1,23 @@
 # Apache Spark Architecture Diagram
 
 ```mermaid
-graph TD
-    subgraph Driver Node
-        D[Driver Program] -->|1. Submits| E[SparkContext]
-        E -->|2. Creates| T[DAG Scheduler]
-        T -->|3. Splits into| S[Stages]
-        S -->|4. Creates| B[Tasks]
+flowchart TD
+    subgraph Driver
+        A[SparkContext] --> B[DAG Scheduler]
+        B --> C[Task Scheduler]
     end
 
-    subgraph Cluster Manager
-        E -->|5. Requests| CM[Cluster Manager]
-        CM -->|6. Allocates| W[Workers]
+    subgraph ClusterManager
+        D[YARN/Mesos/Standalone]
     end
 
-    subgraph Worker Nodes
-        W -->|7. Launches| EX[Executors]
-        EX -->|8. Runs| B
-        EX -->|9. Caches| RDD[RDDs]
+    subgraph WorkerNodes
+        E[Executor 1] --> F[Task 1]
+        E --> G[Task 2]
+        H[Executor 2] --> I[Task 3]
+        H --> J[Task 4]
     end
 
-    style D fill:#f9f,stroke:#333
-    style E fill:#f9f,stroke:#333
-    style CM fill:#bbf,stroke:#333
-    style W fill:#9f9,stroke:#333
-    style EX fill:#9f9,stroke:#333
+    C -->|Submits Tasks| D
+    D -->|Assigns Resources| E
+    D -->|Assigns Resources| H
