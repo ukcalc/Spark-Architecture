@@ -1,5 +1,15 @@
 # Apache Spark Architecture Diagram
 
+**Key Components:**
+
+Driver Program - Runs SparkContext and schedules tasks
+
+Cluster Manager - Manages resources (YARN/Mesos/kubernetes/Standalone)
+
+Worker Nodes - Run executors that execute tasks
+
+Executors - Perform computations and store data
+
 ```mermaid
 flowchart TD
     subgraph Driver
@@ -8,7 +18,7 @@ flowchart TD
     end
 
     subgraph ClusterManager
-        D[YARN/Mesos/Standalone]
+        D[YARN/Mesos/kubernetes/Standalone]
     end
 
     subgraph WorkerNodes
@@ -21,3 +31,4 @@ flowchart TD
     C -->|Submits Tasks| D
     D -->|Assigns Resources| E
     D -->|Assigns Resources| H
+
